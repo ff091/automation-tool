@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}"></link>
+    <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/main.css}"></link>
+
+    <script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.blockUI.js}"></script>
+    <script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.css}"></link>
+	<script th:src="@{/bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js}"></script>
+    <script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}"></link>
+    <script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}"></link>
+    <script th:src="@{/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/bower_components/datatables.net-select/js/dataTables.select.min.js}"></script>
+    <script th:src="@{/js/dataTables.editor.free.js}"></script>
+	<script th:src="@{/js/export/buttons.flash.min.js}"></script>
+	<script th:src="@{/js/export/buttons.html5.min.js}"></script>
+	<script th:src="@{/js/export/buttons.print.min.js}"></script>
+	<script th:src="@{/js/export/jszip.min.js}"></script>
+	<script th:src="@{/js/export/pdfmake.min.js}"></script>
+	<script th:src="@{/js/export/vfs_fonts.js}"></script>
+	<title th:text="#{automation.title}"></title>
+</head>
+<body>
+	<div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation" th:include="layouts/header :: header"></nav>
+		<div id="main_content">
+			<div class="container-fluid text-center">
+				<h1 th:text="#{automation.title}">Automation Test Service</h1>
+			</div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 well" id="content">
+                    	<div class="container-fluid">
+							<form id="create-test-case-form" action="javascript:void(0)" role="form" data-toggle="validator">
+							<div class="row section-row">
+								<div class="col-md-6 form-group">
+									<label for="test_case_name">Test Case Code: </label>
+									<input id="test_case_name" name="test_case_name" class="form-control" placeholder="Code of test case" required="required"></input>
+								</div>
+								<div class="col-md-6 form-group">
+									<label for="description">Description: </label>
+									<textarea id="description" class="form-control" placeholder="Description of test case"></textarea>
+								</div>
+								<div class="col-md-12 form-group">
+									<label for="sqls">SQL Delete Test Data: </label>
+									<textarea id="sqls" class="form-control" placeholder="Sql for delete automation data"></textarea>
+								</div>
+							</div>
+                    		<div class="row section-row">
+                    			<div class="form-inline">
+									<label>URL: </label>
+									<div class="form-group">
+										<label for="ip_address">IP Address</label>
+										<input id="ip_address" class="form-control" name="ip_address"
+											   pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$"
+											   placeholder="IP Address" required="required"></input>
+									</div>
+                    				<div class="form-group">
+										<label for="port">Port</label>
+										<input id="port" class="form-control" name="port" placeholder="Port" value="8080" required="required"></input>
+									</div>
+                    				<div class="form-group">
+										<label for="api_service">Service API</label>
+										<input id="api_service" name="api_service" class="form-control lv-long-input" placeholder="API" required="required"></input>
+									</div>
+
+                    			</div>
+							</div>
+							<div id="create_test_case_section" class="row section-row">
+								<div class="container-fluid">
+									<div class="col-md-6 vertical-divider">
+										<h2 class="test_title">Test case steps</h2>
+										<table id="test_case_table" class="dataTable table table-striped nowrap" cellspacing="0" width="100%">
+								        </table>
+									</div>
+									<div class="col-md-6">
+										<h2 class="result_title">Result Test</h2>
+										<table id="expected_table" class="dataTable table table-striped nowrap" cellspacing="0" width="100%">
+								        </table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 vertical-divider">
+										<button class="btn btn-primary pull-right" id="try-to-run" type="button">
+											Try to run this test case <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+										</button>
+									</div>
+									<div class="col-md-6">
+										<label class="label result-label">Final Test Case Result: <span id="result-status"></span></label>
+										<button class="btn btn-primary pull-right" type="submit" id="save-test-case">
+											<i class="fa fa-floppy-o" aria-hidden="true"></i> Save Test Case
+										</button>
+										<button class="btn btn-primary pull-right" type="button" id="cancel-edit-test-case">
+											<i class="fa fa-refresh" aria-hidden="true"></i> Cancel
+										</button>
+									</div>
+								</div>
+							</div>
+							</form>
+							<div class="row">
+								<div class="text-center group-btn">
+									<div class="pull-left">
+										<button class="btn btn-primary" id="editTestCase" disabled="disabled">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Selected Test Case
+										</button>
+										<button class="btn btn-primary" id="deleteTestCase" disabled="disabled">
+											<i class="fa fa-times" aria-hidden="true"></i> Delete Selected Test Case
+										</button>
+									</div>
+									<div class="pull-right">
+										<span class="btn btn-primary btn-file">
+											<i class="fa fa-file-excel-o" aria-hidden="true"></i> Import
+											<form id="form-import-test-case" enctype="multipart/form-data" action="javascript:void(0)">
+												<input id="importTestCase" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></input>
+											</form>
+										</span>
+										<button class="btn btn-primary" id="runTestCases">
+											<i class="fa fa-play-circle" aria-hidden="true"></i> Run All Test Cases
+										</button>
+									</div>
+								</div>
+								<table id="list_test_case" class="dataTable table table-striped nowrap" cellspacing="0" width="100%">
+						        </table>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <footer>
+        <div th:replace="layouts/footer :: footer"></div>
+    </footer>
+    <script th:src="@{/js/content.js}"></script>
+</body>
+</html>

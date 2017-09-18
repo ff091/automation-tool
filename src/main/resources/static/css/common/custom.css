@@ -1,0 +1,131 @@
+/* Common style */
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #FFF;
+    color: #1a1a1a;
+    font-family: 'Muli', sans-serif;
+    padding: 50px 0px 0px 0px;
+    -webkit-text-size-adjust: none;
+}
+
+footer {
+    position: relative;
+    z-index: 9999;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    background-color: #222;
+}
+
+.section-row {
+	padding: 25px 15px;
+}
+
+.section-row {
+    border-bottom: 1px solid #a7a7a7;
+}
+
+.none-padding {
+	padding: 0;
+}
+
+.vertical-divider {
+    border-right: 1px solid #c2c2c2;
+}
+
+.horizontal-divider {
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.group-btn {
+    padding-top: 20px;
+    height: 80px;
+}
+
+.group-btn button:not(:first-child) {
+    margin-left: 10px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+@media(min-width:768px) {
+    .lv-long-input {
+    	width: 450px !important;
+    }
+}
+
+table.dataTable tbody tr.selected {
+	background-color: #B0BED9;
+}
+table.dataTable.nowrap td {
+    white-space: normal !important;
+}
+table.dataTable tbody td {
+    word-break: break-all;
+    vertical-align: top;
+}
+
+
+/* End Common */
+
+#wrapper {
+    padding-left: 0;
+}
+
+#main_content {
+    width: 100%;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    #main_content {
+        padding: 20px 10px;
+    }
+}
+
+#create_test_case_section .container-fluid {
+	min-height: 300px;
+}
+
+.result-label {
+	color: black;
+    font-size: 15px;
+}
+
+.result_title, .test_title {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+}
+#cancel-edit-test-case {
+    display: none;
+    margin-right: 10px;
+}
+#result-status {
+	
+}

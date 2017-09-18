@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Muli";
+    src: url(../../fonts/Muli/Muli-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Muli Italic";
+    src: url(../../fonts/Muli/Muli-Italic.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Muli Bold";
+    src: url(../../fonts/Muli/Muli-Bold.ttf);
+    font-weight: 700;
+}

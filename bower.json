@@ -1,0 +1,18 @@
+{
+  "version": "0.0.0",
+  "name": "intelli-vu-test",
+  "authors": [
+    "LongLV"
+	],
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "datatables.net": "latest",
+    "datatables.net-bs": "latest",
+    "datatables.net-buttons": "latest",
+    "datatables.net-buttons-bs": "latest",
+    "datatables.net-fixedheader": "latest",
+    "datatables.net-fixedheader-bs": "latest",
+    "datatables.net-responsive": "latest",
+    "datatables.net-responsive-bs": "latest"
+  }
+}
