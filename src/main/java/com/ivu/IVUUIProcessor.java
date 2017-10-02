@@ -1,4 +1,4 @@
-package com.automation.ivu;
+package com.ivu;
 
 import java.net.URL;
 import java.util.List;

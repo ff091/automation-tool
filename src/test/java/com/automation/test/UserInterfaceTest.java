@@ -12,10 +12,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.automation.config.Configuration;
-import com.automation.ivu.IVUUIProcessor;
 import com.automation.model.UITestCaseTemplate;
 import com.automation.processor.TestCaseProcessor;
 import com.automation.util.FileUtil;
+import com.ivu.IVUUIProcessor;
 
 public class UserInterfaceTest {
     
